@@ -9,7 +9,7 @@
       state: latest
   - name: Apache enabled and running
     ansible.builtin.service:
-      name: httpd
+      name: apache2
       enabled: true
       state: started
   - name: Copy web.html
