@@ -5,7 +5,7 @@
   tasks:
   - name: Latest Apache version installed
     ansible.builtin.package:
-      name: httpd
+      name: apache2
       state: latest
   - name: Apache enabled and running
     ansible.builtin.service:
