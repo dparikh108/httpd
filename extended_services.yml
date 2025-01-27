@@ -1,0 +1,26 @@
+---
+- name: Install extended services
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Install Postfix
+      ansible.builtin.package:
+        name: postfix
+        state: latest
+      when: inventory_hostname in groups['web']
+    - name: Postfix enabled and running
+      ansible.builtin.service:
+        name: postfix
+        enabled: true
+        state: started 
+    - name: Install database in corresponding group
+      ansible.builtin.package:
+        name: postgresql
+        state: latest
+      when: inventory_hostname in groups['database']
+    - name: PostgreSQL enabled and running
+      ansible.builtin.service:
+        name: postgresql
+        enabled: true
+        state: started
